@@ -73,24 +73,21 @@ def postOrderTraversalIterative(root: TreeNode):
         return []
 
     res = []
-    stack = []
-    while True:
-        while root:
-            if root.right is not None:
-                stack.append(root.right)
-            stack.append(root)
-            root = root.left
-        root = stack.pop()
-        if (root.right is not None and stack and stack[-1] == root.right):
-            stack.pop()
-            stack.append(root)
-            root = root.right
+    stack = [root, root]
+    while stack:
+        current = stack.pop()
+        if stack and stack[-1] is current:
+            if current.right:
+                stack.append(current.right)
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+                stack.append(current.left)
         else:
-            res.append(root.data)
-            root = None
-        if (len(stack) <= 0):
-            break
+            res.append(current.data)
+
     return res
+
 
 import unittest
 
