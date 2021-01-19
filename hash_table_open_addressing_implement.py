@@ -3,14 +3,18 @@ class Node:
        self.key = key
        self.value = value
 
+
 class HashTable(object):
+
     def __init__(self, capacity):
         self.size = 0
         self.capacity = capacity
         self.array = self.createArray(self.capacity)
 
+
     def createArray(self, capacity):
         return [None] * capacity
+
 
     def resize(self, new_capacity):
         new_table = HashTable(new_capacity)
@@ -22,8 +26,10 @@ class HashTable(object):
         self.array = new_table.array
         self.capacity = new_capacity
 
+
     def hash(self, key, trial_count):
         return (key + trial_count) % len(self.array)
+
 
     def display(self):
         output = ''
@@ -34,11 +40,14 @@ class HashTable(object):
             output += '\n'
         return output
 
+
     def getSize(self):
         return self.size
 
+
     def getCapacity(self):
         return self.capacity
+
 
     def add(self, key, value):
         if self.size >= self.capacity / 2:
@@ -53,6 +62,7 @@ class HashTable(object):
         self.array[index] = Node(key, value)
         self.size += 1
 
+
     def get(self, key):
         trial_count = 0
         index = self.hash(key, trial_count)
@@ -63,6 +73,7 @@ class HashTable(object):
                 return self.array[index].value
             trial_count += 1
             index = self.hash(key, trial_count)
+
 
     def delete(self, key):
         trial_count = 0
@@ -76,7 +87,9 @@ class HashTable(object):
             trial_count += 1
             index = self.hash(key, trial_count)
 
+
 import unittest
+
 
 class TestHashTable(unittest.TestCase):
 
@@ -93,6 +106,7 @@ class TestHashTable(unittest.TestCase):
         self.assertEqual(h.getCapacity(), 16)
         self.assertEqual(h.getSize(), 6)
 
+
     def testIO(self):
         h = HashTable(4)
         h.add(1, 'One')
@@ -108,6 +122,7 @@ class TestHashTable(unittest.TestCase):
         self.assertEqual(h.get(17), 'Seventeen')
         self.assertRaises(KeyError, h.get, 2)
         self.assertRaises(KeyError, h.get, 4)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

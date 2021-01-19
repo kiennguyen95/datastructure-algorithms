@@ -1,17 +1,22 @@
 class Node:
+
     def __init__(self, key, value):
-       self.key = key
-       self.value = value
-       self.next = None
+        self.key = key
+        self.value = value
+        self.next = None
+
 
 class HashTable(object):
+
     def __init__(self, capacity):
         self.size = 0
         self.capacity = capacity
         self.array = self.createArray(self.capacity)
 
+
     def createArray(self, capacity):
         return [None] * capacity
+
 
     def resize(self, new_capacity):
         new_table = HashTable(new_capacity)
@@ -24,8 +29,10 @@ class HashTable(object):
         self.array = new_table.array
         self.capacity = new_capacity
 
+
     def hash(self, key):
         return key % len(self.array)
+
 
     def display(self):
         output = ''
@@ -38,11 +45,14 @@ class HashTable(object):
             output += '\n'
         return output
 
+
     def getSize(self):
         return self.size
 
+
     def getCapacity(self):
         return self.capacity
+
 
     def add(self, key, value, append = False):
         if self.size >= self.capacity / 2:
@@ -65,6 +75,7 @@ class HashTable(object):
                 p.next = node
         self.size += 1
 
+
     def get(self, key):
         index = self.hash(key)
         node = self.array[index]
@@ -77,7 +88,9 @@ class HashTable(object):
 
 import unittest
 
+
 class TestHashTable(unittest.TestCase):
+
 
     def testTableDoubling(self):
         h = HashTable(4)
@@ -92,6 +105,7 @@ class TestHashTable(unittest.TestCase):
         self.assertEqual(h.getCapacity(), 16)
         self.assertEqual(h.getSize(), 6)
 
+
     def testIO(self):
         h = HashTable(4)
         h.add(1, 'One')
@@ -105,6 +119,7 @@ class TestHashTable(unittest.TestCase):
         self.assertEqual(h.get(3), 'New three')
         self.assertEqual(h.get(17), 'Seventeen')
         self.assertRaises(KeyError, h.get, 4)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
