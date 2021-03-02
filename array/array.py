@@ -28,19 +28,19 @@ class Array():
 
     def size(self):
         """
-        Return number of items are currently stored in array
+        Return number of items are currently stored in array-linkedlist
         """
         return self._size
 
     def capacity(self):
         """
-        Return number of items array can hold
+        Return number of items array-linkedlist can hold
         """
         return self._capacity
 
     def isEmpty(self):
         """
-        If array is empty, return true. Otherwise, return false
+        If array-linkedlist is empty, return true. Otherwise, return false
         """
         return self._size == 0
 
@@ -54,7 +54,7 @@ class Array():
 
     def append(self, item):
         """
-        Append given item to the end of array, increase capacity if not available
+        Append given item to the end of array-linkedlist, increase capacity if not available
         """
         if self._size == self._capacity:
             self._resize(self._capacity * 2)
